@@ -1,0 +1,24 @@
+feeds:
+  - name: "abuse_ch_ssl_blacklist"
+    url: "https://sslbl.abuse.ch/blacklist/sslipblacklist.txt"
+    type: "ip"
+    risk_score: 85
+    interval: 3600
+    
+  - name: "cisco_talos"
+    url: "https://talosintelligence.com/documents/ip-blacklist"
+    type: "ip"
+    risk_score: 70
+    interval: 7200
+    
+  - name: "emerging_threats"
+    url: "https://rules.emergingthreats.net/blockrules/emerging-Block-IPs.txt"
+    type: "ip"
+    risk_score: 75
+    interval: 3600
+    
+  - name: "spamhaus_drop"
+    url: "https://www.spamhaus.org/drop/drop.txt"
+    type: "cidr"
+    risk_score: 80
+    interval: 43200
