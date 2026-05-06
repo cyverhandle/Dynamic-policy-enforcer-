@@ -298,5 +298,73 @@ weights = {
     "indicator_type": 0.15,     # IP, domain, hash, etc.
     "geo_risk": 0.15            # Country risk level
 }
+🐛 Troubleshooting
+Common Issues
+MongoDB Connection Failed
+
+bash
+sudo systemctl start mongod
+docker-compose restart mongodb
+
+iptables Permission Denied
+sudo python src/main.py
+# Or add user to sudoers for iptables
+
+# No Alerts in Slack
+# Verify webhook URL
+curl -X POST -H 'Content-type: application/json' \
+     --data '{"text":"Test"}' $SLACK_WEBHOOK_URL
+# 📚 Documentation 
+
+API Reference
+
+Deployment Guide
+
+Security Guide
+
+Compliance Documentation
+
+Troubleshooting
+
+🤝 Contributing
+Fork the repository
+
+Create feature branch (git checkout -b feature/amazing)
+
+Commit changes (git commit -m 'Add amazing feature')
+
+Push to branch (git push origin feature/amazing)
+
+Open Pull Request
+
+📄 License
+MIT License - see LICENSE file for details
+
+📞 Support
+Documentation: docs.threat-intel.com
+
+Issues: GitHub Issues
+
+Security: security@threat-intel.com
+
+🙏 Acknowledgments
+VirusTotal for threat intelligence API
+
+AlienVault OTX for open threat exchange
+
+Feodo Tracker for C2 server data
+
+ELK Stack for SIEM capabilities
+
+Built for financial institutions requiring proactive, automated threat defense
+
+Version 1.0.0 | Last Updated: December 2024
+
+text
+
+These files complete the Threat Intelligence Platform with all necessary modules, validators, logger configurations, and comprehensive documentation. The implementation is production-ready and follows the architectural directives specified in the project requirements.
+This response is AI-generated, for reference only.
+
+
 
 
