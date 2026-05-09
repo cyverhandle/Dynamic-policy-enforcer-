@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "threat-overview",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Threat Intelligence Overview",
+      "panels": [
+        {
+          "gridData": { "x": 0, "y": 0, "w": 12, "h": 4 },
+          "panelIndex": "1",
+          "panelRefName": "panel_0"
+        },
+        {
+          "gridData": { "x": 12, "y": 0, "w": 12, "h": 4 },
+          "panelRefName": "panel_1"
+        }
+      ]
+    }
+  }
+]
