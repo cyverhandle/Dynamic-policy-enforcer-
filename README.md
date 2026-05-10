@@ -109,8 +109,8 @@ Financial institutions face sophisticated cyber attacks including zero-day explo
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-org/threat-intel-platform.git
-cd threat-intel-platform
+git clone https://github.com/cyverhandle/Dynamic-policy-enforcer-.git
+cd Dynamic-policy-enforcer-
 
 # 2. Run the deployment script
 chmod +x scripts/deploy.sh
