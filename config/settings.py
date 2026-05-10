@@ -52,6 +52,12 @@ class Config:
                 "interval_seconds": 1800,
                 "risk_score_base": 75
             },
+         {
+            "name": "abuseipdb",  
+            "enabled": bool(self.api.abuseipdb_api_key),
+            "interval_seconds": 1800,  # 30 minutes
+            "risk_score_base": 80
+        },
             {
                 "name": "feodo_tracker",
                 "enabled": True,
