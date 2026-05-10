@@ -17,6 +17,7 @@ from database.mongo_client import MongoDBClient
 from database.models import ThreatIntel, AuditLog, BlockingRule
 from aggregators.virustotal_aggregator import VirusTotalAggregator
 from aggregators.alienvault_aggregator import AlienVaultAggregator
+from aggregators.abuseipdb_aggregator import AbuseIPDBAggregator  
 from aggregators.feodo_aggregator import FeodoAggregator
 from aggregators.tor_aggregator import TorExitNodeAggregator
 
@@ -42,6 +43,7 @@ class ThreatIntelligencePlatform:
         self.aggregators = [
             VirusTotalAggregator(),
             AlienVaultAggregator(),
+            AbuseIPDBAggregator(), 
             FeodoAggregator(),
             TorExitNodeAggregator()
         ]
