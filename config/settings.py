@@ -14,6 +14,7 @@ class DatabaseConfig:
 class APIConfig:
     virustotal_api_key: str = os.getenv("VIRUSTOTAL_API_KEY", "")
     alienvault_api_key: str = os.getenv("ALIENVAULT_API_KEY", "")
+    abuseipdb_api_key: str = os.getenv("ABUSEIPDB_API_KEY", "")
     
 @dataclass
 class EnforcementConfig:
