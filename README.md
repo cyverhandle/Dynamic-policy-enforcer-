@@ -207,6 +207,7 @@ threat-intel-platform/
 │   │   ├── base_aggregator.py
 │   │   ├── virustotal_aggregator.py
 │   │   ├── alienvault_aggregator.py
+│   │   ├── abuseibdb_aggregator.py
 │   │   ├── feodo_aggregator.py
 │   │   └── tor_aggregator.py
 │   ├── database/             # MongoDB operations
