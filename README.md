@@ -127,6 +127,8 @@ docker-compose up -d
 python scripts/init_database.py
 
 # 6. Start the platform
+python -m venv tip_env
+source tip_env/bin/activate
 python src/main.py
 ```
 
