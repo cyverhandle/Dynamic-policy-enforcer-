@@ -1,6 +1,10 @@
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Dict, Any
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 @dataclass
 class DatabaseConfig:
@@ -14,12 +18,11 @@ class DatabaseConfig:
 class APIConfig:
     virustotal_api_key: str = os.getenv("VIRUSTOTAL_API_KEY", "")
     alienvault_api_key: str = os.getenv("ALIENVAULT_API_KEY", "")
-    abuseipdb_api_key: str = os.getenv("ABUSEIPDB_API_KEY", "")
     
 @dataclass
 class EnforcementConfig:
-    firewall_type: str = os.getenv("FIREWALL_TYPE", "iptables")  # iptables, nftables, windows
-    block_duration_seconds: int = int(os.getenv("BLOCK_DURATION", 86400))  # 24 hours
+    firewall_type: str = os.getenv("FIREWALL_TYPE", "iptables")
+    block_duration_seconds: int = int(os.getenv("BLOCK_DURATION", 86400))
     high_risk_threshold: int = int(os.getenv("HIGH_RISK_THRESHOLD", 70))
     auto_block_enabled: bool = os.getenv("AUTO_BLOCK_ENABLED", "True").lower() == "true"
 
@@ -28,7 +31,8 @@ class AlertConfig:
     slack_webhook_url: str = os.getenv("SLACK_WEBHOOK_URL", "")
     email_enabled: bool = os.getenv("EMAIL_ENABLED", "False").lower() == "true"
     smtp_server: str = os.getenv("SMTP_SERVER", "")
-    alert_recipients: List[str] = os.getenv("ALERT_RECIPIENTS", "").split(",")
+    # Fix: Use default_factory for mutable default
+    alert_recipients: List[str] = field(default_factory=list)
 
 class Config:
     def __init__(self):
@@ -52,12 +56,6 @@ class Config:
                 "interval_seconds": 1800,
                 "risk_score_base": 75
             },
-         {
-            "name": "abuseipdb",  
-            "enabled": bool(self.api.abuseipdb_api_key),
-            "interval_seconds": 1800,  # 30 minutes
-            "risk_score_base": 80
-        },
             {
                 "name": "feodo_tracker",
                 "enabled": True,
@@ -74,4 +72,5 @@ class Config:
             }
         ]
 
+# Create global config instance
 config = Config()
