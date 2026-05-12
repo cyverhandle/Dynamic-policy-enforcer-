@@ -1,9 +1,5 @@
 # Advanced Threat Intelligence Platform (TIP) & Dynamic Policy Enforcer
 
-[![Python Version](https://img.shields.io/badge/python-3.9+-blue.svg)](https://python.org)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
 A production-ready Threat Intelligence Platform for financial institutions that automates OSINT collection, provides real-time threat detection, and dynamically enforces security policies across network infrastructure.
 
 ---
