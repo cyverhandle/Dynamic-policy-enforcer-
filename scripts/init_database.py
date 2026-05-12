@@ -23,5 +23,5 @@ def main():
     
     print("Database initialization complete!")
 
-if __name__ "__main__":
+if __name__ == "__main__":
     main()
