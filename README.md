@@ -123,12 +123,13 @@ cp .env.example .env
 # 4. Start all services
 docker-compose up -d
 
-# 5. Initialize the database
-python scripts/init_database.py
-
-# 6. Start the platform
+#5. Setup Environment
 python -m venv tip_env
 source tip_env/bin/activate
+# 6. Initialize the database
+python scripts/init_database.py
+
+# 7. Start the platform
 python src/main.py
 ```
 
