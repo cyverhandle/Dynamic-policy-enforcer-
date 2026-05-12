@@ -1,28 +1,31 @@
-version: '3.8'
 
 services:
   mongodb:
     image: mongo:6.0
     container_name: tip-mongodb
     restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: threat_intel
     ports:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
-      MONGO_INITDB_DATABASE: threat_intel
+    networks:
+      - tip-network
 
   redis:
     image: redis:7-alpine
     container_name: tip-redis
     restart: unless-stopped
+    command: redis-server --appendonly yes
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
-    command: redis-server --appendonly yes
+    networks:
+      - tip-network
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
@@ -36,18 +39,8 @@ services:
       - "9200:9200"
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
-
-  logstash:
-    image: docker.elastic.co/logstash/logstash:8.11.0
-    container_name: tip-logstash
-    restart: unless-stopped
-    volumes:
-      - ./logstash/pipeline:/usr/share/logstash/pipeline
-      - ./logstash/config:/usr/share/logstash/config
-    ports:
-      - "5000:5000"
-    depends_on:
-      - elasticsearch
+    networks:
+      - tip-network
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.11.0
@@ -59,23 +52,23 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
+    networks:
+      - tip-network
 
-  tip-app:
-    build: .
-    container_name: tip-app
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.0
+    container_name: tip-logstash
     restart: unless-stopped
-    environment:
-      - MONGODB_URI=mongodb://mongodb:27017/
-      - REDIS_HOST=redis
-      - VIRUSTOTAL_API_KEY=${VIRUSTOTAL_API_KEY}
-      - ALIENVAULT_API_KEY=${ALIENVAULT_API_KEY}
-    volumes:
-      - ./config:/app/config
-      - ./logs:/app/logs
+    ports:
+      - "5000:5000"
     depends_on:
-      - mongodb
-      - redis
       - elasticsearch
+    networks:
+      - tip-network
+
+networks:
+  tip-network:
+    driver: bridge
 
 volumes:
   mongodb_data:
